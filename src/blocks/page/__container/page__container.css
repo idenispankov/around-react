@@ -2,6 +2,8 @@
   min-width: 320px;
   max-width: 882px;
   margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 900px) {
