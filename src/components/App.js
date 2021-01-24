@@ -5,6 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 
 function App() {
+
   return (
     <body className="page">
       <div className="page__container">
@@ -13,9 +14,8 @@ function App() {
         <Footer />
       </div>
 
-
       <div className="modal modal_type_edit-profile">
-        <form action="#" className="form form_type_profile" novalidate>
+        <form action="#" className="form form_type_profile">
           <h3 className="form__title">Edit Profile</h3>
 
           <input type="text" placeholder="Name" id="profile-name" className="form__input form__input_type_name" name="nameInput" minLength="2" maxLength="40" required/>
@@ -30,7 +30,7 @@ function App() {
       </div>
 
       <div className="modal modal_type_avatar">
-        <form action="#" className="form form_type_avatar" name="avatar" novalidate>
+        <form action="#" className="form form_type_avatar" name="avatar">
           <h3 className="form__title">Change Profile Picture</h3>
 
           <input id="avatar-url" type="url" className="form__input form__input_type_avatar" name="avatar" aria-label="Image Link" placeholder="Image Link" required/>
@@ -42,7 +42,7 @@ function App() {
       </div>
 
       <div className="modal modal_type_add-card">
-        <form action="#" className="form form_type_card" name="CardForm" novalidate>
+        <form action="#" className="form form_type_card" name="CardForm">
           <h3 className="form__title">New Place</h3>
 
           <input id="card-title" type="text" placeholder="Title" className="form__input form__input_type_card-title" name="title" minLength="2" maxLength="30" required/>
@@ -57,7 +57,7 @@ function App() {
       </div>
 
       <div className="modal modal_type_delete-card">
-        <form action="#" className="form form_type_card-delete" name="deleteCard" novalidate>
+        <form action="#" className="form form_type_card-delete" name="deleteCard">
           <h3 className="form__title">Are you sure?</h3>
           <button className="form__button form__button_type_create" type="submit">Yes</button>
           <button className="form__close-button" aria-label="Close button" type="reset"></button>
