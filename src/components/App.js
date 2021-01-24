@@ -1,34 +1,16 @@
-import logo from './logo.svg';
-import './index.css';
+import logo from '../images/header__logo.svg';
+import '../index.css';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <body className="page">
       <div className="page__container">
-        <header className="header">
-          <img className="header__logo" src={logo} alt="Around US logo"/>
-        </header>
-        <main>
-          <section className="profile">
-            <button className="profile__avatar-edit">
-              <img className="profile__avatar" src="#" alt="#"/>
-            </button>
-            <div className="profile__info">
-              <h1 className="profile__text">Costeau</h1>
-              <button className="profile__edit-button" aria-label="Edit Avatar" type="button"></button>
-              <p className="profile__paragraph">Explorer</p>
-            </div>
-            <button className="profile__add-button" aria-label="Add button" type="button"></button>
-          </section>
-
-          <section className="elements">
-            <ul className="elements__list"></ul>
-          </section>
-        </main>
-
-        <footer className="footer">
-          <p className="footer__text">&copy; 2020 Around The U.S.</p>
-        </footer>
+        <Header logo={logo} />
+        <Main />
+        <Footer />
       </div>
 
 
