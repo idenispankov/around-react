@@ -1,12 +1,12 @@
 import logo from './logo.svg';
-import './App.css';
+import './index.css';
 
 function App() {
   return (
     <body className="page">
       <div className="page__container">
         <header className="header">
-          <img className="header__logo" src="#" alt="Around US logo"/>
+          <img className="header__logo" src={logo} alt="Around US logo"/>
         </header>
         <main>
           <section className="profile">
