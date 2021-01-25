@@ -1,6 +1,6 @@
 function PopupWithForm(props) {
   return(
-    <div className={`modal modal_type_${props.modalName}`}>
+    <div className={`modal${props.isOpen} modal_type_${props.modalName}`}>
         <form action="#" className={`form form_${props.formType}`}>
           <h3 className="form__title">{props.formTitle}</h3>
 

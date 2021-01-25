@@ -1,11 +1,32 @@
+import {useState} from 'react';
 import logo from '../images/header__logo.svg';
 import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import imagePopup from './imagePopup';
 
 function App() {
+
+  const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
+  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+
+  function handleEditAvatarClick() {
+    console.log('avatar click!!!')
+    setIsAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    console.log('profile click!!!')
+    setIsProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    console.log('Add Card click!!!')
+    setIsDeletePopupOpen(true);
+  }
 
   return (
     <body className="page">
@@ -15,9 +36,9 @@ function App() {
         <Footer />
       </div>
 
-      <PopupWithForm modalName='edit_profile' formType='type_profile' modalTitle='Edit Profile' submitText='Save'/>
-      <PopupWithForm modalName='type_avatar' formType='type_avatar' modalTitle='Change Profile Picture' submitText='Save'/>
-      <PopupWithForm modalName='type_add-card' formType='type_profile' modalTitle='New Place' submitText='Create'/>
+      <PopupWithForm modalName='edit_profile' formType='type_profile' modalTitle='Edit Profile' submitText='Save' onEditProfile={handleEditProfileClick}/>
+      <PopupWithForm modalName='type_avatar' formType='type_avatar' modalTitle='Change Profile Picture' submitText='Save' onEditAvatar={handleEditAvatarClick}/>
+      <PopupWithForm modalName='type_add-card' formType='type_profile' modalTitle='New Place' submitText='Create' onAddPlace={handleAddPlaceClick}/>
       <PopupWithForm modalName='type_delete-card' formType='type_profile' modalTitle='Are you sure?' submitText='Yes'/>
 
       {/* <div className="modal modal_type_edit-profile">
@@ -70,13 +91,7 @@ function App() {
         </form>
       </div> */}
 
-      <div className="modal modal_type_image">
-        <figure className="modal__figure">
-          <button className="form__close-button form__close-button_type-image" aria-label="Close button" type="button"></button>
-          <img className="modal__image"/>
-          <figcaption className="modal__image-title"></figcaption>
-        </figure>
-      </div>
+      <imagePopup/>
 
       <template id="card-template" className="card-template">
         <li className="card">
