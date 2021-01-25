@@ -1,11 +1,11 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import logo from '../images/header__logo.svg';
 import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-import imagePopup from './imagePopup';
+import ImagePopup from './ImagePopup';
 
 function App() {
 
@@ -14,32 +14,70 @@ function App() {
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
 
   function handleEditAvatarClick() {
-    console.log('avatar click!!!')
-    setIsAvatarPopupOpen(true);
+    setIsAvatarPopupOpen(!isAvatarPopupOpen);
   }
 
   function handleEditProfileClick() {
-    console.log('profile click!!!')
-    setIsProfilePopupOpen(true);
+    setIsProfilePopupOpen(!isProfilePopupOpen);
   }
 
   function handleAddPlaceClick() {
-    console.log('Add Card click!!!')
-    setIsDeletePopupOpen(true);
+    setIsDeletePopupOpen(!isDeletePopupOpen);
   }
 
   return (
     <body className="page">
+
       <div className="page__container">
-        <Header logo={logo} />
-        <Main />
-        <Footer />
+
+        <Header 
+        logo={logo} 
+        />
+
+        <Main 
+        onEditAvatar = {handleEditAvatarClick}
+        onEditProfile = {handleEditProfileClick}
+        onAddPlace = {handleAddPlaceClick}
+        />
+
+        <Footer 
+        
+        />
       </div>
 
-      <PopupWithForm modalName='edit_profile' formType='type_profile' modalTitle='Edit Profile' submitText='Save' onEditProfile={handleEditProfileClick}/>
-      <PopupWithForm modalName='type_avatar' formType='type_avatar' modalTitle='Change Profile Picture' submitText='Save' onEditAvatar={handleEditAvatarClick}/>
-      <PopupWithForm modalName='type_add-card' formType='type_profile' modalTitle='New Place' submitText='Create' onAddPlace={handleAddPlaceClick}/>
-      <PopupWithForm modalName='type_delete-card' formType='type_profile' modalTitle='Are you sure?' submitText='Yes'/>
+      <PopupWithForm 
+        modalName='edit_profile' 
+        formType='type_profile' 
+        modalTitle='Edit Profile' 
+        submitText='Save' 
+        isOpen = {isProfilePopupOpen}
+        onEditProfile={handleEditProfileClick}
+      />
+
+
+      <PopupWithForm 
+        modalName='type_avatar' 
+        formType='type_avatar' 
+        modalTitle='Change Profile Picture' 
+        submitText='Save' 
+        isOpen = {isAvatarPopupOpen}
+        onEditAvatar={handleEditAvatarClick}
+      />
+      <PopupWithForm 
+        modalName='type_add-card' 
+        formType='type_profile' 
+        modalTitle='New Place' 
+        submitText='Create' 
+        isOpen = {isDeletePopupOpen}
+        onAddPlace={handleAddPlaceClick}
+      />
+
+      <PopupWithForm 
+        modalName='type_delete-card' 
+        formType='type_profile' 
+        modalTitle='Are you sure?' 
+        submitText='Yes'
+      />
 
       {/* <div className="modal modal_type_edit-profile">
         <form action="#" className="form form_type_profile">
@@ -91,7 +129,7 @@ function App() {
         </form>
       </div> */}
 
-      <imagePopup/>
+      <ImagePopup/>
 
       <template id="card-template" className="card-template">
         <li className="card">
