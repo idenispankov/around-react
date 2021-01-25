@@ -3,6 +3,7 @@ import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
 
 function App() {
 
@@ -14,7 +15,12 @@ function App() {
         <Footer />
       </div>
 
-      <div className="modal modal_type_edit-profile">
+      <PopupWithForm modalName='edit_profile' formType='type_profile' modalTitle='Edit Profile' submitText='Save'/>
+      <PopupWithForm modalName='type_avatar' formType='type_avatar' modalTitle='Change Profile Picture' submitText='Save'/>
+      <PopupWithForm modalName='type_add-card' formType='type_profile' modalTitle='New Place' submitText='Create'/>
+      <PopupWithForm modalName='type_delete-card' formType='type_profile' modalTitle='Are you sure?' submitText='Yes'/>
+
+      {/* <div className="modal modal_type_edit-profile">
         <form action="#" className="form form_type_profile">
           <h3 className="form__title">Edit Profile</h3>
 
@@ -62,7 +68,7 @@ function App() {
           <button className="form__button form__button_type_create" type="submit">Yes</button>
           <button className="form__close-button" aria-label="Close button" type="reset"></button>
         </form>
-      </div>
+      </div> */}
 
       <div className="modal modal_type_image">
         <figure className="modal__figure">

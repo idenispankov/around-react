@@ -1,11 +1,5 @@
 function Main(props) {
 
-  // const editAvatarButton = document.querySelector('.profile__avatar-edit');
-  // const editAvatarModal = document.querySelector('.modal_type_avatar');
-
-  // const editProfileButton = document.querySelector('.profile__edit-button');
-  // const editProfileModal = document.querySelector('.modal_type_edit-profile')
-
   function handleEditAvatarClick() {
     const editAvatarButton = document.querySelector('.profile__avatar-edit');
     const editAvatarModal = document.querySelector('.modal_type_avatar');
