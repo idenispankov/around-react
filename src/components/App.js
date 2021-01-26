@@ -8,7 +8,7 @@ import PopupWithForm from './PopupWithForm';
 import Input from './Input';
 import ImagePopup from './ImagePopup';
 
-function App() {
+export default function App() {
 
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
@@ -46,8 +46,8 @@ function App() {
         <Main 
         onEditAvatar = {handleEditAvatarClick}
         onEditProfile = {handleEditProfileClick}
-        onAddPlace = {handleAddPlaceClick}
-        />
+        onAddPlace = {handleAddPlaceClick}>
+        </Main>
 
         <Footer 
         
@@ -134,32 +134,9 @@ function App() {
         onClose = {closeAllPopups}>
       </PopupWithForm>
 
-      {/* <div className="modal modal_type_add-card">
-        <form action="#" className="form form_type_card" name="CardForm">
-          <h3 className="form__title">New Place</h3>
-
-          <input id="card-title" type="text" placeholder="Title" className="form__input form__input_type_card-title" name="title" minLength="2" maxLength="30" required/>
-          <span id="card-title-error" className="form__error"></span>
-
-          <input id="card-url" type="url" placeholder="Image link" className="form__input form__input_type_card-url" name="url" required/>
-          <span id="card-url-error" className="form__error"></span>
-
-          <button disabled className="form__button form__button_type_create form__button_disabled" type="submit">Create</button>
-          <button className="form__close-button" aria-label="Close button" type="reset"></button>
-        </form>
-      </div>
-
-      <div className="modal modal_type_delete-card">
-        <form action="#" className="form form_type_card-delete" name="deleteCard">
-          <h3 className="form__title">Are you sure?</h3>
-          <button className="form__button form__button_type_create" type="submit">Yes</button>
-          <button className="form__close-button" aria-label="Close button" type="reset"></button>
-        </form>
-      </div> */}
-
       <ImagePopup/>
 
-      <template id="card-template" className="card-template">
+      {/* <template id="card-template" className="card-template">
         <li className="card">
           <button className="card__delete-button" aria-label="Delete button" type="button"></button>
           <img className="card__image"/>
@@ -171,10 +148,8 @@ function App() {
                 </div>
             </div>
         </li>
-      </template>
+      </template> */}
 
     </div>
   );
 }
-
-export default App;

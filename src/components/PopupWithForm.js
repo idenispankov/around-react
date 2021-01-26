@@ -1,4 +1,4 @@
-function PopupWithForm(props) {
+export default function PopupWithForm(props) {
   return(
     <div className={`modal modal_type_${props.modalName} ${props.isOpen && 'modal_is-open'}`}>
         <form action="#" className={`form form_${props.formType}`}>
@@ -12,5 +12,3 @@ function PopupWithForm(props) {
       </div>
   )
 }
-
-export default PopupWithForm;

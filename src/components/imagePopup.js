@@ -1,4 +1,4 @@
-function imagePopup(props) {
+export default function imagePopup(props) {
   return (
     <div className="modal modal_type_image">
         <figure className="modal__figure">
@@ -9,5 +9,3 @@ function imagePopup(props) {
       </div>
   )
 }
-
-export default imagePopup;
