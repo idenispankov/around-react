@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import api from '../utils/api';
-import avatarDefault from '../images/avatar_type_dark.jpg'
+import avatarDefault from '../images/avatar_type_dark.jpg';
+import Card from './Card';
 
 export default function Main(props) {
   const [userName, setUserName] = useState('');
@@ -44,17 +45,10 @@ export default function Main(props) {
           <section className="elements">
             <ul className="elements__list">
               {cards.map(card =>  (
-              <li className="card" key = {card._id}>
-                <button className="card__delete-button" aria-label="Delete button" type="button"/>
-                <img className="card__image" alt='card place' src = {card.link}/>
-                <div className="card__group">
-                  <h2 className="card__text">{card.name}</h2> 
-                  <div className="card__like-container">
-                  <button className="card__like-button" aria-label="Like button" type="button"/>
-                  <p className="card__like-button-count">{card.likes.length}</p>
-                </div>
-                </div>
-            </li>
+              <Card
+                card = {card}
+                key = {card._id}
+              />
               ))}
             </ul>
           </section>
