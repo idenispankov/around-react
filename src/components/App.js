@@ -57,7 +57,7 @@ export default function App() {
       <PopupWithForm 
         modalName='edit_profile' 
         formType='type_profile' 
-        modalTitle='Edit Profile' 
+        formTitle='Edit profile'
         submitText='Save' 
         isOpen = {isProfilePopupOpen}
         onEditProfile={handleEditProfileClick}
@@ -86,7 +86,7 @@ export default function App() {
       <PopupWithForm 
         modalName='type_avatar' 
         formType='type_avatar' 
-        modalTitle='Change Profile Picture' 
+        formTitle='Change Profile Picture' 
         submitText='Save' 
         isOpen = {isAvatarPopupOpen}
         onEditAvatar={handleEditAvatarClick}
@@ -104,7 +104,7 @@ export default function App() {
       <PopupWithForm 
         modalName='type_add-card' 
         formType='type_profile' 
-        modalTitle='New Place' 
+        formTitle='New Place' 
         submitText='Create' 
         isOpen = {isDeletePopupOpen}
         onAddPlace={handleAddPlaceClick}
