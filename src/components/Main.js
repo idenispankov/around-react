@@ -20,9 +20,7 @@ export default function Main(props) {
 
   useEffect(() => {
     api.getCardList()
-      .then((cards) => {
-        console.log(cards)
-      })
+      .then(setCards)
       .catch(err => console.log(err))
   },[])
 
@@ -33,7 +31,7 @@ export default function Main(props) {
     <main>
           <section className="profile">
             <button className="profile__avatar-edit" onClick={props.onEditAvatar}>
-              <img className="profile__avatar" src={userAvatar} alt="profile image"/>
+              <img className="profile__avatar" src={userAvatar} alt="profile avatar"/>
             </button>
             <div className="profile__info">
               <h1 className="profile__text">{userName}</h1>
@@ -45,17 +43,19 @@ export default function Main(props) {
 
           <section className="elements">
             <ul className="elements__list">
-              <li className="card">
+              {cards.map(card =>  (
+              <li className="card" key = {card._id}>
                 <button className="card__delete-button" aria-label="Delete button" type="button"/>
-                <img className="card__image"/>
+                <img className="card__image" alt='card place' src = {card.link}/>
                 <div className="card__group">
-                  <h2 className="card__text"></h2> 
+                  <h2 className="card__text">{card.name}</h2> 
                   <div className="card__like-container">
                   <button className="card__like-button" aria-label="Like button" type="button"/>
-                  <p className="card__like-button-count">1</p>
+                  <p className="card__like-button-count">{card.likes.length}</p>
                 </div>
                 </div>
             </li>
+              ))}
             </ul>
           </section>
         </main>
