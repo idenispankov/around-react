@@ -5,6 +5,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import Input from './Input';
 import ImagePopup from './ImagePopup';
 
 function App() {
@@ -14,19 +15,27 @@ function App() {
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
 
   function handleEditAvatarClick() {
-    setIsAvatarPopupOpen(!isAvatarPopupOpen);
+    setIsAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setIsProfilePopupOpen(!isProfilePopupOpen);
+    setIsProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setIsDeletePopupOpen(!isDeletePopupOpen);
+    setIsDeletePopupOpen(true);
   }
 
+  function closeAllPopups(e) {
+      setIsAvatarPopupOpen(false);
+      setIsProfilePopupOpen(false);
+      setIsDeletePopupOpen(false);
+  }
+
+
+
   return (
-    <body className="page">
+    <div className="page">
 
       <div className="page__container">
 
@@ -52,7 +61,26 @@ function App() {
         submitText='Save' 
         isOpen = {isProfilePopupOpen}
         onEditProfile={handleEditProfileClick}
-      />
+        onClose = {closeAllPopups}>
+          <Input
+            type='text'
+            placeholder="Name"
+            inputType='type_name'
+            name='nameInput'
+            min='2'
+            max='40'
+            id='profile-name-error'
+          />
+          <Input
+            type='text'
+            placeholder="About me"
+            inputType='type_about'
+            name='aboutInput'
+            min='2'
+            max='200'
+            id='profile-about-error'
+          />
+        </PopupWithForm>
 
 
       <PopupWithForm 
@@ -62,7 +90,17 @@ function App() {
         submitText='Save' 
         isOpen = {isAvatarPopupOpen}
         onEditAvatar={handleEditAvatarClick}
-      />
+        onClose = {closeAllPopups}>
+          <Input
+            type='url'
+            placeholder="Image Link"
+            inputType='type_avatar'
+            name='avatar'
+            id='avatar-url-error'
+          />
+      </PopupWithForm>
+
+
       <PopupWithForm 
         modalName='type_add-card' 
         formType='type_profile' 
@@ -70,43 +108,33 @@ function App() {
         submitText='Create' 
         isOpen = {isDeletePopupOpen}
         onAddPlace={handleAddPlaceClick}
-      />
+        onClose = {closeAllPopups}>
+          <Input
+            type='text'
+            placeholder="Title"
+            inputType='card-title'
+            name='title'
+            id='card-title-error'
+          />
+          <Input
+            type='url'
+            placeholder="Image Link"
+            inputType='card-url'
+            name='url'
+            id='card-url-error'
+          />
+      </PopupWithForm>
+      
 
       <PopupWithForm 
         modalName='type_delete-card' 
         formType='type_profile' 
         modalTitle='Are you sure?' 
         submitText='Yes'
-      />
+        onClose = {closeAllPopups}>
+      </PopupWithForm>
 
-      {/* <div className="modal modal_type_edit-profile">
-        <form action="#" className="form form_type_profile">
-          <h3 className="form__title">Edit Profile</h3>
-
-          <input type="text" placeholder="Name" id="profile-name" className="form__input form__input_type_name" name="nameInput" minLength="2" maxLength="40" required/>
-          <span id="profile-name-error" className="form__error"></span>
-
-          <input type="text" placeholder="About me" id="profile-name" className="form__input form__input_type_about" name="aboutInput" minLength="2" maxLength="200" required/>
-          <span id="profile-about-error" className="form__error"></span>
-
-          <button className="form__button form__button_type_save" type="submit">Save</button>
-          <button className="form__close-button" aria-label="Close button" type="button"></button>
-        </form>
-      </div>
-
-      <div className="modal modal_type_avatar">
-        <form action="#" className="form form_type_avatar" name="avatar">
-          <h3 className="form__title">Change Profile Picture</h3>
-
-          <input id="avatar-url" type="url" className="form__input form__input_type_avatar" name="avatar" aria-label="Image Link" placeholder="Image Link" required/>
-          <span id="avatar-url-error" className="form__error"></span>
-
-          <button disabled className="form__button form__button_type_save form__button_disabled" type="submit">Save</button>
-          <button className="form__close-button" aria-label="Close button" type="reset"></button>
-        </form>
-      </div>
-
-      <div className="modal modal_type_add-card">
+      {/* <div className="modal modal_type_add-card">
         <form action="#" className="form form_type_card" name="CardForm">
           <h3 className="form__title">New Place</h3>
 
@@ -145,7 +173,7 @@ function App() {
         </li>
       </template>
 
-    </body>
+    </div>
   );
 }
 
