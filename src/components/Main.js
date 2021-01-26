@@ -1,11 +1,12 @@
 import {useState, useEffect} from 'react';
 import api from '../utils/api';
+import avatarDefault from '../images/avatar_type_dark.jpg'
 
 export default function Main(props) {
-  const [userAvatar, setUserAvatar] = useState('');
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
-  const [cards, setCards] = ([]);
+  const [userAvatar, setUserAvatar] = useState(avatarDefault);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api.getUserInfo()
@@ -15,15 +16,15 @@ export default function Main(props) {
         setUserAvatar(res.avatar)
       })
       .catch(err => console.log(err))
-  })
+  }, [])
 
   useEffect(() => {
     api.getCardList()
-      .then((res) => {
-        console.log(res)
+      .then((cards) => {
+        console.log(cards)
       })
       .catch(err => console.log(err))
-  })
+  },[])
 
 
 
@@ -44,14 +45,14 @@ export default function Main(props) {
 
           <section className="elements">
             <ul className="elements__list">
-              <li class="card">
-                <button class="card__delete-button" aria-label="Delete button" type="button"/>
-                <img class="card__image"/>
-                <div class="card__group">
-                  <h2 class="card__text"></h2> 
-                  <div class="card__like-container">
-                  <button class="card__like-button" aria-label="Like button" type="button"/>
-                  <p class="card__like-button-count">1</p>
+              <li className="card">
+                <button className="card__delete-button" aria-label="Delete button" type="button"/>
+                <img className="card__image"/>
+                <div className="card__group">
+                  <h2 className="card__text"></h2> 
+                  <div className="card__like-container">
+                  <button className="card__like-button" aria-label="Like button" type="button"/>
+                  <p className="card__like-button-count">1</p>
                 </div>
                 </div>
             </li>
