@@ -5,7 +5,7 @@ export default function Card({card, onCardClick}) {
   }
 
   return (
-    <li className = "card" key = {card._id}>
+    <li className = "card" id = {card._id}>
       <button className = "card__delete-button" aria-label = "Delete button" type = "button"/>
       <img className = "card__image" alt = {card.name} src = {card.link} onClick = {handleCardClick}/>
         <div className = "card__group">

@@ -1,4 +1,4 @@
-export default function imagePopup({selectedCard, onClose}) {
+export default function ImagePopup({selectedCard, onClose}) {
   return (
     <div className = {`modal modal_type_image ${selectedCard ? 'modal_is-open' : null}`}>
         <figure className = "modal__figure">
