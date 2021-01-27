@@ -1,10 +1,10 @@
-export default function imagePopup(props) {
+export default function imagePopup({selectedCard, onClose}) {
   return (
-    <div className={`modal modal_type_image ${props.card ? 'modal_is-open' : null}`}>
-        <figure className="modal__figure">
-          <button className="form__close-button form__close-button_type-image" onClick={props.onClose} aria-label="Close button" type="button"></button>
-          <img className="modal__image" src={props.card && props.card.link} alt={props.card && props.card.name}/>
-          <figcaption className="modal__image-title">{props.card && props.card.name}</figcaption>
+    <div className = {`modal modal_type_image ${selectedCard ? 'modal_is-open' : null}`}>
+        <figure className = "modal__figure">
+          <button className = "form__close-button form__close-button_type-image" onClick = {onClose} aria-label = "Close button" type = "button"></button>
+          <img className = "modal__image" src= {selectedCard ? selectedCard.link : null} alt = {selectedCard ? selectedCard.name : null}/>
+          <figcaption className = "modal__image-title">{selectedCard ? selectedCard.name : null}</figcaption>
         </figure>
       </div>
   )

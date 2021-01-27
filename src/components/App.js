@@ -13,7 +13,6 @@ export default function App() {
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
-  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null)
 
   function handleEditAvatarClick() {
@@ -32,24 +31,22 @@ export default function App() {
       setIsAvatarPopupOpen(false);
       setIsProfilePopupOpen(false);
       setIsDeletePopupOpen(false);
-      setIsImagePopupOpen(false)
-      setSelectedCard(false);
+      setSelectedCard(null);
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    setIsImagePopupOpen(true);
   }
 
 
 
   return (
-    <div className="page">
+    <div className = "page">
 
-      <div className="page__container">
+      <div className = "page__container">
 
         <Header 
-        logo={logo} 
+        logo = {logo} 
         />
 
         <Main 
@@ -60,94 +57,94 @@ export default function App() {
         />
 
         <Footer 
-        
+        footerText = '&copy; 2020 Around The U.S.'
         />
+        
       </div>
 
       <PopupWithForm 
-        modalName='edit_profile' 
-        formType='type_profile' 
-        formTitle='Edit profile'
-        submitText='Save' 
+        modalName = 'edit_profile' 
+        formType = 'type_profile' 
+        formTitle = 'Edit profile'
+        submitText = 'Save' 
         isOpen = {isProfilePopupOpen}
-        onEditProfile={handleEditProfileClick}
+        onEditProfile = {handleEditProfileClick}
         onClose = {closeAllPopups}>
           <Input
-            type='text'
-            placeholder="Name"
-            inputType='type_name'
-            name='nameInput'
-            min='2'
-            max='40'
-            id='profile-name-error'
+            type = 'text'
+            placeholder = "Name"
+            inputType = 'type_name'
+            name = 'nameInput'
+            min = '2'
+            max = '40'
+            id = 'profile-name-error'
           />
           <Input
-            type='text'
-            placeholder="About me"
-            inputType='type_about'
-            name='aboutInput'
-            min='2'
-            max='200'
-            id='profile-about-error'
+            type = 'text'
+            placeholder = "About me"
+            inputType = 'type_about'
+            name = 'aboutInput'
+            min = '2'
+            max = '200'
+            id = 'profile-about-error'
           />
         </PopupWithForm>
 
 
       <PopupWithForm 
-        modalName='type_avatar' 
-        formType='type_avatar' 
-        formTitle='Change Profile Picture' 
-        submitText='Save' 
+        modalName = 'type_avatar' 
+        formType = 'type_avatar' 
+        formTitle = 'Change Profile Picture' 
+        submitText = 'Save' 
         isOpen = {isAvatarPopupOpen}
-        onEditAvatar={handleEditAvatarClick}
+        onEditAvatar = {handleEditAvatarClick}
         onClose = {closeAllPopups}>
           <Input
-            type='url'
-            placeholder="Image Link"
-            inputType='type_avatar'
-            name='avatar'
-            id='avatar-url-error'
+            type = 'url'
+            placeholder = "Image Link"
+            inputType = 'type_avatar'
+            name = 'avatar'
+            id = 'avatar-url-error'
           />
       </PopupWithForm>
 
 
       <PopupWithForm 
-        modalName='type_add-card' 
-        formType='type_profile' 
-        formTitle='New Place' 
-        submitText='Create' 
+        modalName = 'type_add-card' 
+        formType = 'type_profile' 
+        formTitle = 'New Place' 
+        submitText = 'Create' 
         isOpen = {isDeletePopupOpen}
-        onAddPlace={handleAddPlaceClick}
+        onAddPlace = {handleAddPlaceClick}
         onClose = {closeAllPopups}>
           <Input
-            type='text'
-            placeholder="Title"
-            inputType='card-title'
-            name='title'
-            id='card-title-error'
+            type = 'text'
+            placeholder = "Title"
+            inputType = 'card-title'
+            name = 'title'
+            id = 'card-title-error'
           />
           <Input
-            type='url'
-            placeholder="Image Link"
-            inputType='card-url'
-            name='url'
-            id='card-url-error'
+            type = 'url'
+            placeholder = "Image Link"
+            inputType = 'card-url'
+            name = 'url'
+            id = 'card-url-error'
           />
       </PopupWithForm>
       
 
       <PopupWithForm 
-        modalName='type_delete-card' 
-        formType='type_profile' 
-        modalTitle='Are you sure?' 
-        submitText='Yes'
+        modalName = 'type_delete-card' 
+        formType = 'type_profile' 
+        modalTitle = 'Are you sure?' 
+        submitText =  'Yes'
         onClose = {closeAllPopups}>
       </PopupWithForm>
 
       <ImagePopup
         onClose = {closeAllPopups}
-        isOpen = {isImagePopupOpen}
-        card = {selectedCard}
+        selectedCard = {selectedCard}
       />
 
     </div>
