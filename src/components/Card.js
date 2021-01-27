@@ -1,10 +1,13 @@
-export default function Card({card}) {
+export default function Card({card, onCardClick}) {
 
+  function handleCardClick() {
+    onCardClick(card);
+  }
 
   return (
     <li className="card" key = {card._id}>
       <button className="card__delete-button" aria-label="Delete button" type="button"/>
-      <img className="card__image" alt={card.name} src = {card.link}/>
+      <img className="card__image" alt={card.name} src = {card.link} onClick={handleCardClick}/>
         <div className="card__group">
           <h2 className="card__text">{card.name}</h2> 
             <div className="card__like-container">

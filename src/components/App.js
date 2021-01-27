@@ -13,6 +13,8 @@ export default function App() {
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null)
 
   function handleEditAvatarClick() {
     setIsAvatarPopupOpen(true);
@@ -30,6 +32,13 @@ export default function App() {
       setIsAvatarPopupOpen(false);
       setIsProfilePopupOpen(false);
       setIsDeletePopupOpen(false);
+      setIsImagePopupOpen(false)
+      setSelectedCard(false);
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+    setIsImagePopupOpen(true);
   }
 
 
@@ -46,8 +55,9 @@ export default function App() {
         <Main 
         onEditAvatar = {handleEditAvatarClick}
         onEditProfile = {handleEditProfileClick}
-        onAddPlace = {handleAddPlaceClick}>
-        </Main>
+        onAddPlace = {handleAddPlaceClick}
+        onCardClick = {handleCardClick}
+        />
 
         <Footer 
         
@@ -134,21 +144,11 @@ export default function App() {
         onClose = {closeAllPopups}>
       </PopupWithForm>
 
-      <ImagePopup/>
-
-      {/* <template id="card-template" className="card-template">
-        <li className="card">
-          <button className="card__delete-button" aria-label="Delete button" type="button"></button>
-          <img className="card__image"/>
-            <div className="card__group">
-              <h2 className="card__text"></h2> 
-                <div className="card__like-container">
-                  <button className="card__like-button" aria-label="Like button" type="button"></button>
-                  <p className="card__like-button-count"></p>
-                </div>
-            </div>
-        </li>
-      </template> */}
+      <ImagePopup
+        onClose = {closeAllPopups}
+        isOpen = {isImagePopupOpen}
+        card = {selectedCard}
+      />
 
     </div>
   );
