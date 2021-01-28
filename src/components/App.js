@@ -31,7 +31,7 @@ export default function App() {
       setIsAvatarPopupOpen(false);
       setIsProfilePopupOpen(false);
       setIsDeletePopupOpen(false);
-      setSelectedCard(null);
+      setSelectedCard(null); 
   }
 
   function handleCardClick(card) {
