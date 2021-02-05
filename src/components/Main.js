@@ -19,13 +19,18 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
   }, [currentUser]);
 
 
-//   function handleCardLike(card) {
-//     const isLiked = card.likes.some(i => i._id === currentUser._id);
-//     api.updateLikes(card._id, !isLiked).then((newCard) => {
-//       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-//       setCards(newCards);
-//     });
-// } 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    api.updateLikes(card._id, !isLiked)
+    .then((newCard) => {
+      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    
+} 
 
 
   return (
@@ -51,6 +56,7 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
                 key = {card._id}
                 currentUserId = {currentUser._id}
                 onCardClick = {onCardClick}
+                onCardLike = {handleCardLike}
               />
               ))}
             </ul>
