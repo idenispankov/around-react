@@ -49,10 +49,20 @@ export default function App() {
     .then((user) => {
       setCurrentUser(user);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(err => console.log(err))
   }, []);
+
+
+  function handleUpdateUser(data) {
+    api.setUserInfo(data)
+    .then((user) => {
+      setCurrentUser(user);
+      console.log(user)
+      closeAllPopups();
+    })
+    .catch(err => console.log(err))
+  }
+
 
   return (
 
@@ -79,75 +89,9 @@ export default function App() {
         
       </div>
 
-      <EditProfilePopup isOpen = {isProfilePopupOpen} onClose = {closeAllPopups} />
+      <EditProfilePopup isOpen = {isProfilePopupOpen} onClose = {closeAllPopups} onUpdateUser = {handleUpdateUser}/>
 
-      {/* <PopupWithForm 
-        modalName = 'edit_profile' 
-        formType = 'type_profile' 
-        formTitle = 'Edit profile'
-        submitText = 'Save' 
-        isOpen = {isProfilePopupOpen}
-        onEditProfile = {handleEditProfileClick}
-        onClose = {closeAllPopups}>
-          <Input
-            type = 'text'
-            placeholder = "Name"
-            inputType = 'type_name'
-            name = 'nameInput'
-            min = '2'
-            max = '40'
-            id = 'profile-name-error'
-          />
-          <Input
-            type = 'text'
-            placeholder = "About me"
-            inputType = 'type_about'
-            name = 'aboutInput'
-            min = '2'
-            max = '200'
-            id = 'profile-about-error'
-          />
-        </PopupWithForm> */}
-
-{/* import PopupWithForm from './PopupWithForm';
-import Input from './Input';
-
-export default function EditProfilePopup({isOpen, onClose}) {
-
-  
-
-  return (
-
-    <PopupWithForm 
-        modalName = 'edit_profile' 
-        formType = 'type_profile' 
-        formTitle = 'Edit profile'
-        submitText = 'Save' 
-        isOpen = {isOpen}
-        onClose = {onClose}>
-          <Input
-            type = 'text'
-            placeholder = "Name"
-            inputType = 'type_name'
-            name = 'nameInput'
-            min = '2'
-            max = '40'
-            id = 'profile-name-error'
-          />
-          <Input
-            type = 'text'
-            placeholder = "About me"
-            inputType = 'type_about'
-            name = 'aboutInput'
-            min = '2'
-            max = '200'
-            id = 'profile-about-error'
-          />
-        </PopupWithForm>
-  )
-} */}
-
-
+      
       <PopupWithForm 
         modalName = 'type_avatar' 
         formType = 'type_avatar' 
