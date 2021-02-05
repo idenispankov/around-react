@@ -1,7 +1,7 @@
-export default function PopupWithForm({modalName, isOpen, formType, formTitle, submitText, onClose, children}) {
+export default function PopupWithForm({modalName, isOpen, formType, formTitle, submitText, onClose, children, onSubmit}) {
   return(
     <div className = {`modal modal_type_${modalName} ${isOpen && 'modal_is-open'}`}>
-        <form action = "#" className = {`form form_${formType}`}>
+        <form action = "#" className = {`form form_${formType}`} onSubmit = {onSubmit}>
           <h3 className = "form__title">{formTitle}</h3>
 
           {children}

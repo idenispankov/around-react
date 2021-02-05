@@ -33,14 +33,11 @@ getUserInfo() {
 }
 
 // PATCH https://around.nomoreparties.co/v1/groupId/users/me
-setUserInfo({name, about}) {
+setUserInfo(data) {
   return fetch(this._baseUrl + '/users/me', {
     headers: this._headers,
     method: "PATCH",
-    body: JSON.stringify({
-      name,
-      about
-    })
+    body: JSON.stringify(data)
   })
   .then((res) => {
     if(res.ok) {
