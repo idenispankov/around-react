@@ -13,9 +13,7 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
     if(!currentUser) return;
     api.getCardList()
       .then(setCards)
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(err => console.log(err))
   }, [currentUser]);
 
 
@@ -26,11 +24,17 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       setCards(newCards);
     })
-    .catch((err) => {
-      console.log(err);
-    })
-    
+    .catch(err => console.log(err))
 } 
+
+function handleCardDelete(card) {
+  api.removeCard(card._id)
+  .then(() => {
+    const newCards = cards.filter((c) => c._id !== card._id);  
+    setCards(newCards);
+  })
+  .catch(err => console.log(err))
+}
 
 
   return (
@@ -57,6 +61,7 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
                 currentUserId = {currentUser._id}
                 onCardClick = {onCardClick}
                 onCardLike = {handleCardLike}
+                onCardDelete = {handleCardDelete}
               />
               ))}
             </ul>
