@@ -104,35 +104,20 @@ removeCard(cardId) {
   })
 }
 
-// PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  addLike(cardId) {
-    return fetch(this._baseUrl + "/cards/likes/" + cardId, {
-      method: "PUT",
-      headers: this._headers
-    })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      } else {
-        return Promise.reject('Error!' + res.statusText)
-      }
-    })
-  }
+updateLikes(cardId, liked) {
+  let method= 'DELETE';
+  if(liked) method= 'PUT';
 
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  removeLike(cardId) {
-    return fetch(this._baseUrl + "/cards/likes/" + cardId, {
-      method: "DELETE",
-      headers: this._headers
-    })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      } else {
-        return Promise.reject('Error!' + res.statusText)
-      }
-    })
-  }
+  return fetch(this._baseUrl + 'cards/likes/' + cardId, {
+    method: method,
+    headers: this._headers
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    } 
+    return Promise.reject(`Error: ${res.status}`);
+  }); 
+}
 
 
 }

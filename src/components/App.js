@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import logo from '../images/header__logo.svg';
 import '../index.css';
 import Header from './Header';
@@ -7,6 +7,9 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import Input from './Input';
 import ImagePopup from './ImagePopup';
+import api from '../utils/api';
+import { CurrentUserContext } from '../context/CurrentUserContext';
+import avatar from '../images/avatar_type_dark.jpg';
 
 export default function App() {
 
@@ -14,6 +17,8 @@ export default function App() {
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null)
+
+  const [currentUser, setCurrentUser]= useState({name: '', about: '', avatar: avatar});
 
   function handleEditAvatarClick() {
     setIsAvatarPopupOpen(true);
@@ -38,9 +43,20 @@ export default function App() {
     setSelectedCard(card);
   }
 
-
+  useEffect(() => {
+    api.getUserInfo()
+    .then((user) => {
+      setCurrentUser(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
   return (
+
+    <CurrentUserContext.Provider value={currentUser}>
+
     <div className = "page">
 
       <div className = "page__container">
@@ -148,5 +164,6 @@ export default function App() {
       />
 
     </div>
+    </CurrentUserContext.Provider>
   );
 }
