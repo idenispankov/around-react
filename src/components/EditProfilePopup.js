@@ -5,29 +5,29 @@ import {useContext, useState, useEffect} from 'react';
 
 export default function EditProfilePopup(props) {
 
-  const [name, setName] = useState({name: ''})
-  const [description, setDescription] = useState({about: ''})
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   const currentUser = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]); 
-
-  function handleChange() {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
+  function handleChange(e) {
+    setName(e.target.value);
+    setDescription(e.target.value);
   }
 
 
   function handleSubmit(e) {
     e.preventDefault();
     props.onUpdateUser({
-      name,
+      name: name,
       about: description,
     });
   } 
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]); 
 
   
 
@@ -45,13 +45,13 @@ export default function EditProfilePopup(props) {
           <Input 
             type = 'text' 
             name = {name}
-            description = {description}
             placeholder = "Name" 
             inputType = 'type_name' 
             min = '2' 
             max = '40' 
             id = 'profile-name-error' 
             handleChange = {handleChange}
+            value = {name}
           /> 
           <Input 
             type = 'text' 
@@ -63,6 +63,7 @@ export default function EditProfilePopup(props) {
             max = '200' 
             id = 'profile-about-error' 
             handleChange = {handleChange}
+            value = {description}
           /> 
         </PopupWithForm> 
   )
