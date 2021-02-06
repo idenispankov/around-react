@@ -5,15 +5,20 @@ import {useContext, useState, useEffect} from 'react';
 
 export default function EditProfilePopup(props) {
 
-  const currentUser = useContext(CurrentUserContext);
-
   const [name, setName] = useState({name: ''})
   const [description, setDescription] = useState({about: ''})
+
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser]); 
+
+  function handleChange() {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }
 
 
   function handleSubmit(e) {
@@ -24,11 +29,7 @@ export default function EditProfilePopup(props) {
     });
   } 
 
-  function handleChange(e) {
-    setName(e.currentUser.name)
-    setDescription(e.currentUser.about);
-  }
-
+  
 
   return (
     <PopupWithForm  
@@ -38,28 +39,30 @@ export default function EditProfilePopup(props) {
         submitText = 'Save'  
         isOpen = {props.isOpen} 
         onClose = {props.onClose}
+        // onSubmit = {() => console.log('Submit function')}
         onSubmit = {handleSubmit}
         > 
           <Input 
             type = 'text' 
+            name = {name}
+            description = {description}
             placeholder = "Name" 
             inputType = 'type_name' 
-            name = {name}
             min = '2' 
             max = '40' 
             id = 'profile-name-error' 
-            onChange = {handleChange}
+            handleChange = {handleChange}
           /> 
           <Input 
             type = 'text' 
+            name = {name}
+            description = {description}
             placeholder = "About me" 
             inputType = 'type_about' 
-            name = 'aboutInput' 
-            description = {description}
             min = '2' 
             max = '200' 
             id = 'profile-about-error' 
-            onChange = {handleChange}
+            handleChange = {handleChange}
           /> 
         </PopupWithForm> 
   )

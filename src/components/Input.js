@@ -6,10 +6,12 @@ export default function Input(props) {
       placeholder = {props.placeholder} 
       className = {`form__input form__input_${props.inputType}`} 
       name = {props.name} 
+      description = {props.description}
       minLength = {props.min} 
       maxLength = {props.max} 
       onChange = {props.handleChange}
-      required/>
+      required
+      />
 
     <span 
       id = {props.errorType} 

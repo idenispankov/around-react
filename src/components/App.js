@@ -53,11 +53,14 @@ export default function App() {
   }, []);
 
 
-  function handleUpdateUser(data) {
-    api.setUserInfo(data)
-      .then((res) => {
-        setCurrentUser(res)
+  function handleUpdateUser(userData) {
+    api.setUserInfo(userData)
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+        console.log(user)
       })
+      .catch(err => console.log(err))
   }
 
 
@@ -86,7 +89,7 @@ export default function App() {
         
       </div>
 
-      <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onSubmit = {handleUpdateUser}/> 
+      <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser}/> 
 
       {/* <PopupWithForm  
         modalName = 'edit_profile'  
