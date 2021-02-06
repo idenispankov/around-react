@@ -17,9 +17,8 @@ export default function App() {
 
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
-  // const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, SetIsAddPlacePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null)
+  const [selectedCard, setSelectedCard] = useState(null);
   
 
   const [currentUser, setCurrentUser]= useState({name: '', about: '', avatar: avatar});
@@ -61,7 +60,7 @@ export default function App() {
 
   function handleUpdateUser(userData) {
     api.setUserInfo(userData)
-      .then((user) => {
+    .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
       })
@@ -154,8 +153,7 @@ useEffect(() => {
         formType = 'type_profile' 
         modalTitle = 'Are you sure?' 
         submitText =  'Yes'
-        onClose = {closeAllPopups}>
-      </PopupWithForm>
+        onClose = {closeAllPopups}/>
 
       <ImagePopup onClose = {closeAllPopups} selectedCard = {selectedCard}/>
 

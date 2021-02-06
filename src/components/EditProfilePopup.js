@@ -40,7 +40,7 @@ export default function EditProfilePopup(props) {
         modalName = 'edit_profile'  
         formType = 'type_profile'  
         formTitle = 'Edit profile' 
-        submitText = 'Save'  
+        submitText = 'Save'
         isOpen = {props.isOpen} 
         onClose = {props.onClose}
         onSubmit = {handleSubmit}
