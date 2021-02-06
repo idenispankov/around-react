@@ -10,6 +10,7 @@ export default function Input(props) {
       minLength = {props.min} 
       maxLength = {props.max} 
       onChange = {props.handleChange}
+      value = {props.value}
       required
       />
 

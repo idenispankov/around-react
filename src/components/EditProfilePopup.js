@@ -5,10 +5,11 @@ import {useContext, useState, useEffect} from 'react';
 
 export default function EditProfilePopup(props) {
 
-  const [name, setName] = useState('')
-  const [about, setAbout] = useState('')
-
   const currentUser = useContext(CurrentUserContext);
+  
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
+
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -24,7 +25,7 @@ export default function EditProfilePopup(props) {
     e.preventDefault();
     props.onUpdateUser({
       name,
-      about
+      about,
     });
   } 
 

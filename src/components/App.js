@@ -25,15 +25,6 @@ export default function App() {
   const [cards, setCards] = useState([]);
 
 
-  useEffect(() => {
-    api.getUserInfo()
-    .then((user) => {
-      setCurrentUser(user);
-    })
-    .catch(err => console.log(err))
-  }, []);
-
-
   function handleEditAvatarClick() {
     setIsAvatarPopupOpen(true);
   }
@@ -73,7 +64,6 @@ export default function App() {
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
-        console.log(user)
       })
       .catch(err => console.log(err))
   }
@@ -109,12 +99,14 @@ function handleAddPlaceSubmit(cardData) {
 }
 
 useEffect(() => {
-  if(!currentUser) return;
-  api.getCardList()
-    .then(setCards)
+  Promise.all([api.getUserInfo(),api.getCardList({})])
+    .then(data => {
+      const [user,cardsList] = data;
+        setCurrentUser(user)
+        setCards(cardsList)
+    })
     .catch(err => console.log(err))
-}, [currentUser]);
-
+},[])
 
   return (
 
