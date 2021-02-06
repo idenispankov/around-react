@@ -62,7 +62,6 @@ export default function App() {
       .then((user) => {
         setCurrentUser(user);
         closeAllPopups();
-        console.log(user)
       })
       .catch(err => console.log(err))
   }

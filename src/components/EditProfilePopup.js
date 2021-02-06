@@ -10,8 +10,12 @@ export default function EditProfilePopup(props) {
 
   const currentUser = useContext(CurrentUserContext);
 
-  function handleChange(e) {
+  function handleNameChange(e) {
     setName(e.target.value);
+  }
+
+
+  function handleAboutChange(e) {
     setAbout(e.target.value);
   }
 
@@ -19,8 +23,8 @@ export default function EditProfilePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
     props.onUpdateUser({
-      name: name,
-      about: about,
+      name,
+      about
     });
   } 
 
@@ -49,7 +53,7 @@ export default function EditProfilePopup(props) {
             min = '2' 
             max = '40' 
             id = 'profile-name-error' 
-            handleChange = {handleChange}
+            handleChange = {handleNameChange}
             value = {name}
           /> 
           <Input 
@@ -60,7 +64,7 @@ export default function EditProfilePopup(props) {
             min = '2' 
             max = '200' 
             id = 'profile-about-error' 
-            handleChange = {handleChange}
+            handleChange = {handleAboutChange}
             value = {about}
           /> 
         </PopupWithForm> 
