@@ -50,13 +50,11 @@ setUserInfo(data) {
 
 
 // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-setUserAvatar({avatar}) {
+setUserAvatar(data) {
   return fetch(this._baseUrl + '/users/me/avatar', {
     method: "PATCH",
     headers: this._headers,
-    body: JSON.stringify({
-      avatar
-    })
+    body: JSON.stringify(data)
   })
   .then((res) => {
     if (res.ok) {
@@ -68,14 +66,11 @@ setUserAvatar({avatar}) {
 }
 
 // POST https://around.nomoreparties.co/v1/groupId/cards
-addCard({title, url}) {
+addCard(data) {
   return fetch(this._baseUrl + '/cards', {
     headers: this._headers,
     method: "POST",
-    body: JSON.stringify({
-      name: title,
-      link: url
-    })
+    body: JSON.stringify(data)
   })
   .then((res) => {
     if(res.ok) {
@@ -126,17 +121,3 @@ export default new Api({
     "Content-Type": "application/json"
   }
 });
-
-// // GET https://around.nomoreparties.co/v1/groupId/users/me
-// getUserInfo() {
-//   return fetch(this._baseUrl + '/users/me', {
-//     headers: this._headers
-//   })
-//   .then((res) => {
-//     if(res.ok) {
-//       return res.json()
-//     } else {
-//       return Promise.reject('Error!' + res.statusText)
-//     }
-//   })
-// }
