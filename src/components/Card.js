@@ -13,7 +13,7 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
     onCardClick(card);
   }
 
-  function handleLikeClick() {
+  function handleLikeClick(e) {
     onCardLike(card)
   }
 
@@ -23,7 +23,7 @@ export default function Card({card, onCardClick, onCardLike, onCardDelete}) {
 
   return (
     <li className = "card">
-      {isOwn && <button className = "card__delete-button" aria-label = "Delete button" type = "button" onClick = {handleDeleteClick} />}
+      {isOwn && <button className = "card__delete-button" aria-label = "Delete button" type = "reset" onClick = {handleDeleteClick} />}
       <img className = "card__image" alt = {card.name} src = {card.link} onClick = {handleCardClick}/>
         <div className = "card__group">
           <h2 className = "card__text">{card.name}</h2> 

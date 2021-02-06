@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 import PopupWithForm from './PopupWithForm';
 import Input from './Input';
@@ -12,16 +12,20 @@ function AddPlacePopup(props) {
 
 
 
-  function handleChange(e) {
+  function handleNameChange(e) {
     setName(e.target.value);
+  }
+
+
+  function handleLinkChange(e) {
     setLink(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onAddCard({
-      name: name,
-      link: link,
+    props.onAddPlace({
+      name,
+      link
     });
   } 
 
@@ -43,7 +47,7 @@ function AddPlacePopup(props) {
             inputType = 'card-title'
             name = 'title'
             id = 'card-title-error'
-            handleChange = {handleChange}
+            handleChange = {handleNameChange}
             value = {name}
           />
           <Input
@@ -52,7 +56,7 @@ function AddPlacePopup(props) {
             inputType = 'card-url'
             name = 'url'
             id = 'card-url-error'
-            handleChange = {handleChange}
+            handleChange = {handleLinkChange}
             value = {link}
           />
       </PopupWithForm>
