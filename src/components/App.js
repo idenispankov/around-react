@@ -10,7 +10,7 @@ import ImagePopup from './ImagePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import avatar from '../images/avatar_type_dark.jpg';
-import EditProfilePopup from './EditProfilePopup';
+import EditProfilePopup from '../components/EditProfilePopup';
 
 export default function App() {
 
@@ -55,12 +55,9 @@ export default function App() {
 
   function handleUpdateUser(data) {
     api.setUserInfo(data)
-    .then((user) => {
-      setCurrentUser(user);
-      console.log(user)
-      closeAllPopups();
-    })
-    .catch(err => console.log(err))
+      .then((res) => {
+        setCurrentUser(res)
+      })
   }
 
 
@@ -89,7 +86,35 @@ export default function App() {
         
       </div>
 
-      <EditProfilePopup isOpen = {isProfilePopupOpen} onClose = {closeAllPopups} onUpdateUser = {handleUpdateUser}/>
+      <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onSubmit = {handleUpdateUser}/> 
+
+      {/* <PopupWithForm  
+        modalName = 'edit_profile'  
+        formType = 'type_profile'  
+        formTitle = 'Edit profile' 
+        submitText = 'Save'  
+        isOpen = {isProfilePopupOpen} 
+        onEditProfile = {handleEditProfileClick} 
+        onClose = {closeAllPopups}> 
+          <Input 
+            type = 'text' 
+            placeholder = "Name" 
+            inputType = 'type_name' 
+            name = 'nameInput' 
+            min = '2' 
+            max = '40' 
+            id = 'profile-name-error' 
+          /> 
+          <Input 
+            type = 'text' 
+            placeholder = "About me" 
+            inputType = 'type_about' 
+            name = 'aboutInput' 
+            min = '2' 
+            max = '200' 
+            id = 'profile-about-error' 
+          /> 
+        </PopupWithForm>  */}
 
       
       <PopupWithForm 

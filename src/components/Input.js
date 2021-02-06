@@ -1,9 +1,21 @@
-export default function Input({type, placeholder, inputType, name, min, max, errorType}) {
+export default function Input(props) {
   return (
     <>
-    <input type = {type} placeholder = {placeholder} className = {`form__input form__input_${inputType}`} name = {name} minLength = {min} maxLength = {max} required/>
+    <input 
+      type = {props.type} 
+      placeholder = {props.placeholder} 
+      className = {`form__input form__input_${props.inputType}`} 
+      name = {props.name} 
+      minLength = {props.min} 
+      maxLength = {props.max} 
+      onChange = {props.handleChange}
+      required/>
 
-    <span id = {errorType} className = "form__error"></span>
+    <span 
+      id = {props.errorType} 
+      className = "form__error">
+    </span>
+
     </>
   )
 }
