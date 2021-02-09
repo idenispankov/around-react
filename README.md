@@ -1,5 +1,5 @@
 # Project 4: Around The U.S. (React)
-* https://idenispankov.github.io/aroun-react/
+* https://idenispankov.github.io/around-react/
 
 ## Overview
 
