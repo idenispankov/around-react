@@ -25,8 +25,9 @@ export default function EditProfilePopup(props) {
     e.preventDefault();
     props.onUpdateUser({
       name,
-      about,
+      about
     });
+    props.setSubmitStatus(true)
   } 
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function EditProfilePopup(props) {
         modalName = 'edit_profile'  
         formType = 'type_profile'  
         formTitle = 'Edit profile' 
-        submitText = 'Save'
+        submitText = { props.submitStatus ? 'Saving...' : 'Save' }
         isOpen = {props.isOpen} 
         onClose = {props.onClose}
         onSubmit = {handleSubmit}

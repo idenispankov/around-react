@@ -19,6 +19,7 @@ export default function App() {
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, SetIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState(false);
   
 
   const [currentUser, setCurrentUser]= useState({name: '', about: '', avatar: avatar});
@@ -42,6 +43,7 @@ export default function App() {
       setIsProfilePopupOpen(false);
       SetIsAddPlacePopupOpen(false);
       setSelectedCard(null); 
+      setSubmitStatus(false);
   }
 
   function handleCardClick(card) {
@@ -136,7 +138,7 @@ useEffect(() => {
         
       </div>
 
-      <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser}/> 
+      <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser} submitStatus = {submitStatus} setSubmitStatus = { setSubmitStatus } /> 
       <EditAvatarPopup isOpen={isAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}/> 
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace = {handleAddPlaceSubmit}/> 
 
