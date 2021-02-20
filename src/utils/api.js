@@ -13,7 +13,7 @@ getCardList() {
       if(res.ok) {
         return res.json()
       } else {
-        return Promise.reject('Error!' + res.statusText)
+        return Promise.reject('Error! ' + res.statusText)
       }
     })
   }
@@ -27,7 +27,7 @@ getUserInfo() {
     if(res.ok) {
       return res.json()
     } else {
-      return Promise.reject('Error!' + res.statusText)
+      return Promise.reject('Error! ' + res.statusText)
     }
   })
 }
@@ -43,7 +43,7 @@ setUserInfo(data) {
     if(res.ok) {
       return res.json()
     } else {
-      return Promise.reject('Error!' + res.statusText)
+      return Promise.reject('Error! ' + res.statusText)
     }
   })
 }
@@ -60,7 +60,7 @@ setUserAvatar(data) {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject('Error!' + res.statusText)
+      return Promise.reject('Error! ' + res.statusText)
     }
   }); 
 }
@@ -76,7 +76,7 @@ addCard(data) {
     if(res.ok) {
       return res.json()
     } else {
-      return Promise.reject('Error!' + res.statusText)
+      return Promise.reject('Error! ' + res.statusText)
     }
   })
 }
@@ -91,7 +91,7 @@ removeCard(cardId) {
     if(res.ok) {
       return res.json()
     } else {
-      return Promise.reject('Error!' + res.statusText)
+      return Promise.reject('Error! ' + res.statusText)
     }
   })
 }
@@ -103,11 +103,11 @@ updateLikes(cardId, liked) {
   return fetch(this._baseUrl + '/cards/likes/' + cardId, {
     method: method,
     headers: this._headers
-  }).then(res => {
+  }).then((res) => {
     if (res.ok) {
       return res.json();
     } 
-    return Promise.reject(`Error: ${res.status}`);
+    return Promise.reject('Error! ' + res.statusText)
   }); 
 }
 
