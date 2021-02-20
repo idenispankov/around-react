@@ -33,14 +33,22 @@ export default function App() {
 
   function handleEditProfileClick() {
     setIsProfilePopupOpen(true);
+    setEventListener(true);
   }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+    setEventListener(true);
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+    setEventListener(true);
   }
 
   function handleDeleteCardClick() {
     setIsDeleteCardPopupOpen(true)
+    setEventListener(true);
   }
 
   function closeAllPopups(e) {
@@ -50,10 +58,29 @@ export default function App() {
       setIsDeleteCardPopupOpen(false);
       setSelectedCard(null); 
       setSubmitStatus(false);
+      setEventListener(false);
   }
 
-  function handleCardClick(card) {
-    setSelectedCard(card);
+  function closeOnEsc(e) {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  function closeOutSide(e) {
+    if(e.target.classList.contains('modal')) {
+      closeAllPopups();
+    }
+  }
+
+  function setEventListener(listen) {
+    listen ?
+      document.addEventListener('keyup', closeOnEsc) :
+      document.removeEventListener('keyup', closeOnEsc);
+    listen ?
+      document.addEventListener('click', closeOutSide) :
+      document.removeEventListener('click', closeOutSide);
+      
   }
 
 
