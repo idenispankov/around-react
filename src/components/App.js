@@ -4,7 +4,6 @@ import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../context/CurrentUserContext';
@@ -12,12 +11,14 @@ import avatar from '../images/avatar_type_dark.jpg';
 import EditProfilePopup from '../components/EditProfilePopup';
 import EditAvatarPopup from '../components/EditAvatarPopup';
 import AddPlacePopup from '../components/AddPlacePopup';
+import DeleteCardPopup from './DeleteCardPopup';
 
 export default function App() {
 
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, SetIsAddPlacePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [submitStatus, setSubmitStatus] = useState(false);
   
@@ -35,13 +36,18 @@ export default function App() {
   }
 
   function handleAddPlaceClick() {
-    SetIsAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
+  }
+
+  function handleDeleteCardClick() {
+    setIsDeleteCardPopupOpen(true)
   }
 
   function closeAllPopups(e) {
       setIsAvatarPopupOpen(false);
       setIsProfilePopupOpen(false);
-      SetIsAddPlacePopupOpen(false);
+      setIsAddPlacePopupOpen(false);
+      setIsDeleteCardPopupOpen(false);
       setSelectedCard(null); 
       setSubmitStatus(false);
   }
@@ -126,9 +132,10 @@ useEffect(() => {
         onEditAvatar = {handleEditAvatarClick}
         onEditProfile = {handleEditProfileClick}
         onAddPlace = {handleAddPlaceClick}
+        onDeleteClick = {handleDeleteCardClick}
         onCardClick = {handleCardClick}
         cards = {cards}
-        onDeleteClick = {handleCardDelete}
+        onDeleteCard = {handleCardDelete}
         onLikeClick = {handleCardLike}
         />
 
@@ -139,15 +146,18 @@ useEffect(() => {
       </div>
 
       <EditProfilePopup isOpen={isProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser} submitStatus = {submitStatus} setSubmitStatus = { setSubmitStatus } /> 
-      <EditAvatarPopup isOpen={isAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar}/> 
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace = {handleAddPlaceSubmit}/> 
+      <EditAvatarPopup isOpen={isAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar} submitStatus = {submitStatus} setSubmitStatus = { setSubmitStatus } /> 
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace = {handleAddPlaceSubmit} submitStatus = {submitStatus} setSubmitStatus = { setSubmitStatus } /> 
+      <DeleteCardPopup isOpen={isDeleteCardPopupOpen} onClose={closeAllPopups} onDeleteCard = {handleCardDelete} submitStatus = {submitStatus} setSubmitStatus = { setSubmitStatus } />
 
-      <PopupWithForm 
+      {/* <PopupWithForm 
         modalName = 'type_delete-card' 
         formType = 'type_profile' 
-        modalTitle = 'Are you sure?' 
+        formTitle = 'Are you sure?' 
         submitText =  'Yes'
-        onClose = {closeAllPopups}/>
+        onClose = {closeAllPopups}
+        isOpen={isDeleteCardPopupOpen}
+        /> */}
 
       <ImagePopup onClose = {closeAllPopups} selectedCard = {selectedCard}/>
 

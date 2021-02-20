@@ -19,6 +19,7 @@ export default function EditProfilePopup(props) {
     props.onUpdateAvatar({
       avatar
     });
+    props.setSubmitStatus(true);
   } 
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function EditProfilePopup(props) {
         modalName = 'type_avatar'  
         formType = 'type_avatar'  
         formTitle = 'Edit Change Profile Picture' 
-        submitText = 'Save'  
+        submitText = { props.submitStatus ? 'Saving...' : 'Save' } 
         isOpen = {props.isOpen} 
         onClose = {props.onClose}
         onSubmit = {handleSubmit}

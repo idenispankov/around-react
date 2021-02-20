@@ -27,6 +27,9 @@ function AddPlacePopup(props) {
       name,
       link
     });
+    props.setSubmitStatus(true);
+    setName('');
+    setLink('');
   } 
 
 
@@ -36,7 +39,7 @@ function AddPlacePopup(props) {
         modalName = 'type_add-card' 
         formType = 'type_profile' 
         formTitle = 'New Place' 
-        submitText = 'Create' 
+        submitText = { props.submitStatus ? 'Creating...' : 'Create' } 
         isOpen = {props.isOpen} 
         onClose = {props.onClose}
         onSubmit = {handleSubmit}
