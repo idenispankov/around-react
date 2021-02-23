@@ -2,12 +2,12 @@ import PopupWithForm from './PopupWithForm';
 import { useState } from 'react';
 
 function DeleteCardPopup(props) {
-  const [card, setCard] = useState(null);
+  const [card, setCard] = useState(props.card);
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onDeleteCard({ card });
-    setCard();
+    props.onDeleteCard(card);
+    setCard(props.cards);
     props.setSubmitStatus(true);
   }
 
